@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">mindeye</string>
+    <string name="tmap_api_key">@env:TMAP_API_KEY</string>
+</resources>
