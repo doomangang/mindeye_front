@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* mindeyeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* mindeyeTests.m */; };
-		04FE72797D8C245DC3D633CA /* libPods-mindeye-mindeyeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF53D2DFD236278792E9592D /* libPods-mindeye-mindeyeTests.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		3B762C49C58AED1DEAFB9F1A /* libPods-mindeye.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4DF2F4465C8E9B4418E2E3 /* libPods-mindeye.a */; };
+		5B636EE52CE0D871C7C15673 /* libPods-mindeye.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D246F470F0CD6FED490FAD6 /* libPods-mindeye.a */; };
+		705A3DF41BE3B876BA6DA7A1 /* libPods-mindeye-mindeyeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7ADAE989533EB814F17D9C5 /* libPods-mindeye-mindeyeTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		CC4BB1E7C5963138C40E14F7 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
@@ -31,6 +31,8 @@
 		00E356EE1AD99517003FC87E /* mindeyeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mindeyeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* mindeyeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mindeyeTests.m; sourceTree = "<group>"; };
+		0C3138C1C3412F1AC94B34EE /* Pods-mindeye.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mindeye.debug.xcconfig"; path = "Target Support Files/Pods-mindeye/Pods-mindeye.debug.xcconfig"; sourceTree = "<group>"; };
+		0D246F470F0CD6FED490FAD6 /* libPods-mindeye.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mindeye.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* mindeye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mindeye.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = mindeye/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = mindeye/AppDelegate.mm; sourceTree = "<group>"; };
@@ -38,13 +40,11 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = mindeye/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = mindeye/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = mindeye/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		26D05901D9A6E621F55EFACF /* Pods-mindeye-mindeyeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mindeye-mindeyeTests.debug.xcconfig"; path = "Target Support Files/Pods-mindeye-mindeyeTests/Pods-mindeye-mindeyeTests.debug.xcconfig"; sourceTree = "<group>"; };
-		56448B98AE3540A000193506 /* Pods-mindeye.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mindeye.debug.xcconfig"; path = "Target Support Files/Pods-mindeye/Pods-mindeye.debug.xcconfig"; sourceTree = "<group>"; };
-		758923F5DF4781E195A07C12 /* Pods-mindeye-mindeyeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mindeye-mindeyeTests.release.xcconfig"; path = "Target Support Files/Pods-mindeye-mindeyeTests/Pods-mindeye-mindeyeTests.release.xcconfig"; sourceTree = "<group>"; };
+		5FB095258915034127FF205E /* Pods-mindeye-mindeyeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mindeye-mindeyeTests.release.xcconfig"; path = "Target Support Files/Pods-mindeye-mindeyeTests/Pods-mindeye-mindeyeTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = mindeye/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		9E4DF2F4465C8E9B4418E2E3 /* libPods-mindeye.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mindeye.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A207193362275AB101905C18 /* Pods-mindeye.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mindeye.release.xcconfig"; path = "Target Support Files/Pods-mindeye/Pods-mindeye.release.xcconfig"; sourceTree = "<group>"; };
-		CF53D2DFD236278792E9592D /* libPods-mindeye-mindeyeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mindeye-mindeyeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7ADAE989533EB814F17D9C5 /* libPods-mindeye-mindeyeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mindeye-mindeyeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA7D202C895CEB8CFCAD9A87 /* Pods-mindeye.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mindeye.release.xcconfig"; path = "Target Support Files/Pods-mindeye/Pods-mindeye.release.xcconfig"; sourceTree = "<group>"; };
+		D23789CEB08645CCA4547771 /* Pods-mindeye-mindeyeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mindeye-mindeyeTests.debug.xcconfig"; path = "Target Support Files/Pods-mindeye-mindeyeTests/Pods-mindeye-mindeyeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -53,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04FE72797D8C245DC3D633CA /* libPods-mindeye-mindeyeTests.a in Frameworks */,
+				705A3DF41BE3B876BA6DA7A1 /* libPods-mindeye-mindeyeTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B762C49C58AED1DEAFB9F1A /* libPods-mindeye.a in Frameworks */,
+				5B636EE52CE0D871C7C15673 /* libPods-mindeye.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,8 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				9E4DF2F4465C8E9B4418E2E3 /* libPods-mindeye.a */,
-				CF53D2DFD236278792E9592D /* libPods-mindeye-mindeyeTests.a */,
+				0D246F470F0CD6FED490FAD6 /* libPods-mindeye.a */,
+				B7ADAE989533EB814F17D9C5 /* libPods-mindeye-mindeyeTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -143,10 +143,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				56448B98AE3540A000193506 /* Pods-mindeye.debug.xcconfig */,
-				A207193362275AB101905C18 /* Pods-mindeye.release.xcconfig */,
-				26D05901D9A6E621F55EFACF /* Pods-mindeye-mindeyeTests.debug.xcconfig */,
-				758923F5DF4781E195A07C12 /* Pods-mindeye-mindeyeTests.release.xcconfig */,
+				0C3138C1C3412F1AC94B34EE /* Pods-mindeye.debug.xcconfig */,
+				BA7D202C895CEB8CFCAD9A87 /* Pods-mindeye.release.xcconfig */,
+				D23789CEB08645CCA4547771 /* Pods-mindeye-mindeyeTests.debug.xcconfig */,
+				5FB095258915034127FF205E /* Pods-mindeye-mindeyeTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -158,12 +158,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "mindeyeTests" */;
 			buildPhases = (
-				EF29AC13356C1FD9EC0DD82D /* [CP] Check Pods Manifest.lock */,
+				CB4EAA4B912B4C8854061858 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				5223DD049556B04916DD87C9 /* [CP] Embed Pods Frameworks */,
-				8F54ED7DA097A49DE16BB24A /* [CP] Copy Pods Resources */,
+				423F0E7A3DBBDB795F31AECD /* [CP] Embed Pods Frameworks */,
+				0B2E2139EB55B09925ECB31A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -179,13 +179,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "mindeye" */;
 			buildPhases = (
-				1CB64A3A8F762C0DC6A9C57F /* [CP] Check Pods Manifest.lock */,
+				F5D50BB2F4C4C6CAF3930816 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				93605BF7819C7DB579ED9E63 /* [CP] Embed Pods Frameworks */,
-				55834DB149254A5128EA5BCC /* [CP] Copy Pods Resources */,
+				4F048157BD63A7FAF211D7BA /* [CP] Embed Pods Frameworks */,
+				5CDAD74488ED8A37C2228337 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -269,63 +269,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		1CB64A3A8F762C0DC6A9C57F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-mindeye-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5223DD049556B04916DD87C9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-mindeye-mindeyeTests/Pods-mindeye-mindeyeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-mindeye-mindeyeTests/Pods-mindeye-mindeyeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mindeye-mindeyeTests/Pods-mindeye-mindeyeTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		55834DB149254A5128EA5BCC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-mindeye/Pods-mindeye-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-mindeye/Pods-mindeye-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mindeye/Pods-mindeye-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8F54ED7DA097A49DE16BB24A /* [CP] Copy Pods Resources */ = {
+		0B2E2139EB55B09925ECB31A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -342,7 +286,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mindeye-mindeyeTests/Pods-mindeye-mindeyeTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		93605BF7819C7DB579ED9E63 /* [CP] Embed Pods Frameworks */ = {
+		423F0E7A3DBBDB795F31AECD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mindeye-mindeyeTests/Pods-mindeye-mindeyeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mindeye-mindeyeTests/Pods-mindeye-mindeyeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mindeye-mindeyeTests/Pods-mindeye-mindeyeTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4F048157BD63A7FAF211D7BA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -359,7 +320,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mindeye/Pods-mindeye-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EF29AC13356C1FD9EC0DD82D /* [CP] Check Pods Manifest.lock */ = {
+		5CDAD74488ED8A37C2228337 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mindeye/Pods-mindeye-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mindeye/Pods-mindeye-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mindeye/Pods-mindeye-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CB4EAA4B912B4C8854061858 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -375,6 +353,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-mindeye-mindeyeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5D50BB2F4C4C6CAF3930816 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-mindeye-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -414,7 +414,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 26D05901D9A6E621F55EFACF /* Pods-mindeye-mindeyeTests.debug.xcconfig */;
+			baseConfigurationReference = D23789CEB08645CCA4547771 /* Pods-mindeye-mindeyeTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -441,7 +441,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 758923F5DF4781E195A07C12 /* Pods-mindeye-mindeyeTests.release.xcconfig */;
+			baseConfigurationReference = 5FB095258915034127FF205E /* Pods-mindeye-mindeyeTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -465,7 +465,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56448B98AE3540A000193506 /* Pods-mindeye.debug.xcconfig */;
+			baseConfigurationReference = 0C3138C1C3412F1AC94B34EE /* Pods-mindeye.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -494,7 +494,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A207193362275AB101905C18 /* Pods-mindeye.release.xcconfig */;
+			baseConfigurationReference = BA7D202C895CEB8CFCAD9A87 /* Pods-mindeye.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -681,7 +681,7 @@
 				00E356F71AD99517003FC87E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "mindeye" */ = {
 			isa = XCConfigurationList;
@@ -690,7 +690,7 @@
 				13B07F951A680F5B00A75B9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "mindeye" */ = {
 			isa = XCConfigurationList;
@@ -699,7 +699,7 @@
 				83CBBA211A601CBA00E9B192 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

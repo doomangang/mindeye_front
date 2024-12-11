@@ -5,6 +5,7 @@ export type RootStackParamList = {
     DepartureConfirm: undefined;
     ArrivalConfirm: { departureLocation: Location };
     TmapView: { departureLocation: Location; arrivalLocation: Location };
+    CameraScreen: undefined;
 };
 
 export interface Location {
