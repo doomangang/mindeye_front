@@ -260,4 +260,9 @@ export const SheetStyles = StyleSheet.create({
         fontWeight: '500' as const,
         textAlign: 'left',
     },
+    imageContainer: {
+        aspectRatio: 1,
+        alignSelf: 'center',
+        resizeMode: 'contain'
+    },
 });

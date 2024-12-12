@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { View, Alert, Text, Animated, StyleSheet } from 'react-native';
+import { View, Alert, Text, Animated, StyleSheet, Image } from 'react-native';
 import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
 import MapView, { Marker, Polyline } from 'react-native-maps';
 import { RootStackParamList, Location } from '../types';
 import { TMAP_API_KEY } from '@env';
-import { CommonStyles, NavigationStyles, SheetStyles } from '../styles/GlobalStyles';
+import { Color, CommonStyles, NavigationStyles, SheetStyles } from '../styles/GlobalStyles';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import CameraScreen from './CameraScreen';
 import Geolocation from '@react-native-community/geolocation';
@@ -34,8 +34,6 @@ const TmapView = () => {
     const [routeCoords, setRouteCoords] = useState<Array<{ latitude: number; longitude: number }>>([]);
     const mapRef = useRef<MapView>(null);
     const navigation = useNavigation<TmapViewNavigationProp>();
-    const [showCamera, setShowCamera] = useState(false);
-    const slideAnim = useRef(new Animated.Value(1000)).current;  // 화면 밖에서 시작
     const [navigationPoints, setNavigationPoints] = useState<NavigationPoint[]>([]);
     const [currentPointIndex, setCurrentPointIndex] = useState(0);
     const [showSheet, setShowSheet] = useState(false);
@@ -50,33 +48,16 @@ const TmapView = () => {
 
     useEffect(() => {
         if (routeCoords.length > 0) {
-            // 3초 후 카메라 화면 표시
+            // 3초 후 바로 BottomSheet 표시
             const timer = setTimeout(() => {
-                setShowCamera(true);
-                Animated.spring(slideAnim, {
-                    toValue: 0,
-                    useNativeDriver: true,
-                }).start();
-
-                // 5초 후 카메라 화면 사라지고 첫 안내 시작
-                setTimeout(() => {
-                    Animated.timing(slideAnim, {
-                        toValue: 1000,
-                        duration: 300,
-                        useNativeDriver: true,
-                    }).start(() => {
-                        setShowCamera(false);
-                        // Alert 제거하고 바로 Sheet 표시
-                        if (navigationPoints.length > 0) {
-                            setShowSheet(true);
-                        }
-                    });
-                }, 5000);
+                if (navigationPoints.length > 0) {
+                    setShowSheet(true);
+                }
             }, 3000);
 
             return () => clearTimeout(timer);
         }
-    }, [routeCoords]);
+    }, [routeCoords, navigationPoints]);
 
     useEffect(() => {
         console.log('showSheet changed:', showSheet);
@@ -206,7 +187,7 @@ const TmapView = () => {
         }
     };
 
-    // 현재 위치가 경될 때마다 체크
+    // 현재 위치가 변경될 때마다 체크
     useEffect(() => {
         const watchId = Geolocation.watchPosition(
             position => {
@@ -229,7 +210,7 @@ const TmapView = () => {
             <MapView
                 key={key}
                 ref={mapRef}
-                style={CommonStyles.map}
+                style={[CommonStyles.map, { zIndex: 1 }]}
                 initialRegion={{
                     latitude: (departureLocation.latitude + arrivalLocation.latitude) / 2,
                     longitude: (departureLocation.longitude + arrivalLocation.longitude) / 2,
@@ -237,6 +218,7 @@ const TmapView = () => {
                     longitudeDelta: Math.abs(departureLocation.longitude - arrivalLocation.longitude) * 1.5,
                 }}
                 showsUserLocation={true}
+                zIndex={1}
             >
                 <Marker coordinate={departureLocation} title="출발지" />
                 <Marker coordinate={arrivalLocation} title="도착지" pinColor="blue" />
@@ -250,21 +232,11 @@ const TmapView = () => {
                     />
                 )}
             </MapView>
-            {showCamera && (
-                <Animated.View 
-                    style={[
-                        StyleSheet.absoluteFill,
-                        { transform: [{ translateY: slideAnim }] }
-                    ]}
-                >
-                    <CameraScreen />
-                </Animated.View>
-            )}
             {showSheet && (
                 <View style={styles.bottomSheetContainer}>
-                    <BottomSheet>
+                    <BottomSheet image={require('../../assets/images/WarningSign.png')}>
                         <View style={SheetStyles.sheetTextContainer}>
-                            <Text style={SheetStyles.mainLine}>
+                            <Text style={[SheetStyles.mainLine, {color: Color.textPrimary}]}>
                                 {navigationPoints[currentPointIndex]?.description}
                             </Text>
                         </View>
@@ -282,6 +254,8 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         zIndex: 1000,
+        elevation: 10,
+        height: '100%',
     }
 });
 

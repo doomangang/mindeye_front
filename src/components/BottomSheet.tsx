@@ -1,52 +1,72 @@
-import React, { useMemo, useRef } from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import GorhomBottomSheet from '@gorhom/bottom-sheet';
-import { SheetStyles } from '../styles/GlobalStyles';
-
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
+import React, { useMemo, useRef, useState } from 'react';
+import { Image, StyleSheet, Dimensions, LayoutChangeEvent } from 'react-native';
+import GorhomBottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
+import { SheetStyles, Color } from '../styles/GlobalStyles';
 
 interface BottomSheetProps {
     children: React.ReactNode;
-    onClose?: () => void;
+    image: any;
 }
 
-const BottomSheet: React.FC<BottomSheetProps> = ({ children, onClose }) => {
+const BottomSheet: React.FC<BottomSheetProps> = ({ children, image }) => {
+    const [sheetSize, setSheetSize] = useState({ width: 0, height: 0 }); // Bottom Sheet 크기 상태
     const sheetRef = useRef<GorhomBottomSheet>(null);
     const snapPoints = useMemo(() => ['25%', '50%', '90%'], []);
 
+    const imageSize = Math.min(sheetSize.width, sheetSize.height) * 0.7;
+    const handleLayout = (event: LayoutChangeEvent) => {
+        const {width, height} = event.nativeEvent.layout;
+        setSheetSize({width, height});
+    };
+
     return (
-        <View style={styles.container}>
-            <GorhomBottomSheet
-                ref={sheetRef}
-                snapPoints={snapPoints}
-                enablePanDownToClose
-                index={0}
-                onClose={onClose}
-                style={styles.sheet}
+        <GorhomBottomSheet
+            ref={sheetRef}
+            snapPoints={snapPoints}
+            enablePanDownToClose={false}
+            index={2}
+            style={styles.sheet}
+            backgroundStyle={styles.background}
+            handleIndicatorStyle={styles.indicator}
+        >
+            <BottomSheetView 
+                style={SheetStyles.sheetTextContainer}
+                onLayout={handleLayout}
             >
-                <View style={styles.contentContainer}>
-                    <View style={SheetStyles.resizeIndicator} />
-                    {children}
-                </View>
-            </GorhomBottomSheet>
-        </View>
+                
+                {children}
+                <Image 
+                    source={image}
+                    style={{
+                        width: imageSize, 
+                        height: imageSize,
+                        alignSelf: 'center', // alignSelf는 style 객체 안에 있어야 합니다
+                        marginTop: 15 // children과 이미지 사이 여백 추가
+                    }}
+                    resizeMode='contain'
+                />
+            </BottomSheetView>
+        </GorhomBottomSheet>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        position: 'absolute',
-        bottom: 0,
-        width: SCREEN_WIDTH,
-        alignItems: 'center',
-    },
     sheet: {
-        width: '100%',
+        zIndex: 1000,
+        elevation: 10,
+    },
+    background: {
+        backgroundColor: Color.vibrantFillsVibrantTertiaryDark,
+    },
+    indicator: {
+        backgroundColor: '#A0A0A0',
+        width: 50,
     },
     contentContainer: {
         flex: 1,
         alignItems: 'center',
-        padding: 20,
+        paddingHorizontal: 50,
+        color: Color.textPrimary,
     },
 });
 
