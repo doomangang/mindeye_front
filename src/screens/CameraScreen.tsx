@@ -1,8 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, Image } from 'react-native';
 import { CameraStyles } from '../styles/GlobalStyles';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RouteProp } from '@react-navigation/native';
+import { RootStackParamList } from '../types';
 
-const CameraScreen = () => {
+const CameraScreen: React.FC = () => {
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+    const route = useRoute<RouteProp<RootStackParamList, 'CameraScreen'>>();
+    const { departureLocation, arrivalLocation } = route.params;
+
+    useEffect(() => {
+        // 5초 후 자동으로 TmapView로 이동
+        const timer = setTimeout(() => {
+            navigation.navigate('TmapView', {
+                departureLocation,
+                arrivalLocation
+            });
+        }, 5000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
         <View style={CameraStyles.container}>
             <View style={CameraStyles.mainContent}>

@@ -1,11 +1,25 @@
 // types.ts
 
 export type RootStackParamList = {
-    TitleScreen: undefined;
-    DepartureConfirm: undefined;
-    ArrivalConfirm: { departureLocation: Location };
-    TmapView: { departureLocation: Location; arrivalLocation: Location };
-    CameraScreen: undefined;
+    LocationSet: {
+        type: 'departure' | 'arrival';
+        departureLocation?: Location;
+    };
+    DepartureConfirm: {
+        searchedLocation: Location;
+    };
+    ArrivalConfirm: {
+        departureLocation: Location;
+        searchedLocation: Location;
+    };
+    TmapView: { 
+        departureLocation: Location; 
+        arrivalLocation: Location 
+    };
+    CameraScreen: {
+        departureLocation: Location;
+        arrivalLocation: Location;
+    };
 };
 
 export interface Location {

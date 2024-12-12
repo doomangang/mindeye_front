@@ -5,7 +5,7 @@ import { SheetStyles, Color } from '../styles/GlobalStyles';
 
 interface BottomSheetProps {
     children: React.ReactNode;
-    image: any;
+    image?: any;
 }
 
 const BottomSheet: React.FC<BottomSheetProps> = ({ children, image }) => {
@@ -33,18 +33,19 @@ const BottomSheet: React.FC<BottomSheetProps> = ({ children, image }) => {
                 style={SheetStyles.sheetTextContainer}
                 onLayout={handleLayout}
             >
-                
                 {children}
-                <Image 
-                    source={image}
-                    style={{
-                        width: imageSize, 
-                        height: imageSize,
-                        alignSelf: 'center', // alignSelf는 style 객체 안에 있어야 합니다
-                        marginTop: 15 // children과 이미지 사이 여백 추가
-                    }}
-                    resizeMode='contain'
-                />
+                {image && (
+                    <Image 
+                        source={image}
+                        style={{
+                            width: imageSize, 
+                            height: imageSize,
+                            alignSelf: 'center',
+                            marginTop: 15
+                        }}
+                        resizeMode='contain'
+                    />
+                )}
             </BottomSheetView>
         </GorhomBottomSheet>
     );

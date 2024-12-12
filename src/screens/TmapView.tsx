@@ -6,12 +6,10 @@ import { RootStackParamList, Location } from '../types';
 import { TMAP_API_KEY } from '@env';
 import { Color, CommonStyles, NavigationStyles, SheetStyles } from '../styles/GlobalStyles';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import CameraScreen from './CameraScreen';
 import Geolocation from '@react-native-community/geolocation';
 import BottomSheet from '../components/BottomSheet';
 
 type TmapViewRouteProp = RouteProp<RootStackParamList, 'TmapView'>;
-type TmapViewNavigationProp = NativeStackNavigationProp<RootStackParamList, 'TmapView'>;
 
 interface NavigationPoint {
     description: string;
@@ -23,9 +21,24 @@ interface NavigationPoint {
 interface DistanceResponse {
     distanceInfo: {
         distance: number;
-        // 다른 필요한 필드들...
     };
 }
+
+const DirectionIcons = {
+    left: require('../../assets/images/CornerUpLeft.png'),
+    right: require('../../assets/images/CornerUpRight.png'),
+};
+
+const getDirectionIcon = (turnType: number) => {
+    switch (turnType) {
+        case 12: // 좌회전
+            return DirectionIcons.left;
+        case 13: // 우회전
+            return DirectionIcons.right;
+        default:
+            return require('../../assets/images/Straight.png'); // 기본 아이콘
+    }
+};
 
 const TmapView = () => {
     const [key, setKey] = useState(0);
@@ -33,11 +46,9 @@ const TmapView = () => {
     const { departureLocation, arrivalLocation } = route.params;
     const [routeCoords, setRouteCoords] = useState<Array<{ latitude: number; longitude: number }>>([]);
     const mapRef = useRef<MapView>(null);
-    const navigation = useNavigation<TmapViewNavigationProp>();
     const [navigationPoints, setNavigationPoints] = useState<NavigationPoint[]>([]);
     const [currentPointIndex, setCurrentPointIndex] = useState(0);
     const [showSheet, setShowSheet] = useState(false);
-    const sheetAnim = useRef(new Animated.Value(1000)).current;
 
     useEffect(() => {
         if (departureLocation && arrivalLocation) {
@@ -234,7 +245,9 @@ const TmapView = () => {
             </MapView>
             {showSheet && (
                 <View style={styles.bottomSheetContainer}>
-                    <BottomSheet image={require('../../assets/images/WarningSign.png')}>
+                    <BottomSheet 
+                        image={getDirectionIcon(navigationPoints[currentPointIndex]?.turnType)}
+                    >
                         <View style={SheetStyles.sheetTextContainer}>
                             <Text style={[SheetStyles.mainLine, {color: Color.textPrimary}]}>
                                 {navigationPoints[currentPointIndex]?.description}

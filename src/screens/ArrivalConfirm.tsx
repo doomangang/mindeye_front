@@ -1,69 +1,79 @@
-import React from "react";
-import { View, Text, TouchableWithoutFeedback } from "react-native";
-import { CommonStyles, LocationConfirmStyles, SheetStyles, Color } from '../styles/GlobalStyles';
-import { useTheme } from "../ThemeContext";
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import {NativeStackNavigationProp } from '@react-navigation/native-stack';
+import React, { useState } from 'react';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import MapView, { Marker } from 'react-native-maps';
 import { RootStackParamList, Location } from '../types';
-import {useNavigation, useRoute, RouteProp} from "@react-navigation/native";
-import MapPreview from './MapPreview.tsx';
-
-
-type ArrivalConfirmNavigationProp = NativeStackNavigationProp<
-    RootStackParamList,
-    'ArrivalConfirm'
->;
+import { Color, CommonStyles, SheetStyles } from '../styles/GlobalStyles';
+import BottomSheet from '../components/BottomSheet';
 
 type ArrivalConfirmRouteProp = RouteProp<RootStackParamList, 'ArrivalConfirm'>;
 
 const ArrivalConfirm = () => {
-    const theme = useTheme();
-
-    const navigation = useNavigation<ArrivalConfirmNavigationProp>();
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     const route = useRoute<ArrivalConfirmRouteProp>();
+    const { departureLocation, searchedLocation } = route.params;
+    const [selectedLocation, setSelectedLocation] = useState<Location>(searchedLocation);
 
-    const { departureLocation } = route.params;
-
-    const arrivalLocation: Location = {
-        name: '임의 장소',
-        latitude: 37.564991,
-        longitude: 126.983937,
-    };
-
-    const handlePress = () => {
-        navigation.navigate('TmapView', {
+    const handleConfirm = () => {
+        navigation.navigate('CameraScreen', {
             departureLocation: departureLocation,
-            arrivalLocation: arrivalLocation,
+            arrivalLocation: selectedLocation
         });
     };
 
     return (
-        <View style={[CommonStyles.container, { backgroundColor: theme.colors.background }]}>
-            <MapPreview location={arrivalLocation} markerTitle="도착지" />
-            <TouchableWithoutFeedback onPress={handlePress}>
-                <View style={SheetStyles.container}>
-                    <View style={SheetStyles.resizeIndicator} />
-                    <View style={SheetStyles.titleAndControls}>
-                        <Text style={[SheetStyles.titleText, { color: theme.colors.text }]}>지도</Text>
-                    </View>
-                    <View style={SheetStyles.sheetTextContainer}>
-                        <View style={SheetStyles.sheetText}>
-                            <Text style={SheetStyles.optionalLine}>
-                                <Text style={{ color: Color.textPrimary }}>도착지</Text>
-                                <Text style={{ color: Color.textSecondary }}>를</Text>
-                            </Text>
-                            <Text style={[SheetStyles.mainLine, { color: theme.colors.text }]}>
-                                중앙대학교 310관
-                            </Text>
-                            <Text style={[SheetStyles.comment, { color: theme.colors.textSecondary }]}>
-                                으로 설정합니다
-                            </Text>
-                        </View>
-                    </View>
+        <View style={CommonStyles.container}>
+            <MapView
+                style={CommonStyles.map}
+                initialRegion={{
+                    latitude: selectedLocation.latitude,
+                    longitude: selectedLocation.longitude,
+                    latitudeDelta: 0.005,
+                    longitudeDelta: 0.005,
+                }}
+            >
+                <Marker
+                    coordinate={selectedLocation}
+                    draggable
+                    onDragEnd={(e) => setSelectedLocation({
+                        ...selectedLocation,
+                        latitude: e.nativeEvent.coordinate.latitude,
+                        longitude: e.nativeEvent.coordinate.longitude,
+                    })}
+                />
+            </MapView>
+            <BottomSheet>
+                <View style={SheetStyles.sheetTextContainer}>
+                    <Text style={SheetStyles.mainLine}>
+                        {selectedLocation.name}
+                    </Text>
+                    <TouchableOpacity 
+                        style={styles.confirmButton}
+                        onPress={handleConfirm}
+                    >
+                        <Text style={styles.buttonText}>도착지로 설정</Text>
+                    </TouchableOpacity>
                 </View>
-            </TouchableWithoutFeedback>
+            </BottomSheet>
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    confirmButton: {
+        backgroundColor: Color.bLUE,
+        padding: 15,
+        borderRadius: 8,
+        alignItems: 'center',
+        width: '100%',
+        marginTop: 20,
+    },
+    buttonText: {
+        color: Color.textPrimary,
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+});
 
 export default ArrivalConfirm;

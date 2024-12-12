@@ -261,6 +261,7 @@ export const SheetStyles = StyleSheet.create({
         textAlign: 'left',
     },
     imageContainer: {
+        width: '70%',
         aspectRatio: 1,
         alignSelf: 'center',
         resizeMode: 'contain'
