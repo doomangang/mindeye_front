@@ -24,60 +24,53 @@ const LocationSet = () => {
   const speechTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const voiceListeners = () => {
-      const onSpeechStart = () => {
-        console.log('Speech started');
-        setIsListening(true);
-        
-        speechTimeoutRef.current = setTimeout(() => {
-          if (isListening) {
-            console.log('No speech detected for 5 seconds, stopping...');
-            stopListening();
-          }
-        }, 5000);
-      };
+    // 음성 인식 리스너 설정
+    Voice.onSpeechStart = () => {
+      console.log('Speech started');
+      setIsListening(true);
       
-      const onSpeechEnd = () => {
-        console.log('Speech ended');
-        if (speechTimeoutRef.current) {
-          clearTimeout(speechTimeoutRef.current);
+      speechTimeoutRef.current = setTimeout(() => {
+        if (isListening) {
+          console.log('No speech detected for 10 seconds, stopping...');
+          stopListening();
         }
-      };
-      
-      const onSpeechResults = (e: SpeechResultsEvent) => {
-        console.log('Speech results:', e.value);
-        if (speechTimeoutRef.current) {
-          clearTimeout(speechTimeoutRef.current);
-        }
-        if (e.value && e.value.length > 0) {
-          setLocationText(e.value[0]);
-          setIsListening(false);
-          Voice.stop();
-        }
-      };
-      
-      const onSpeechError = (e: SpeechErrorEvent) => {
-        console.error('Speech error:', e);
-        if (e.error?.code === 'recognition_fail') {
-          Alert.alert('음성 인식 실패', '음 ���지되지 않았습니다. 다시 시도해주세요.');
-        }
-        setIsListening(false);
-      };
-
-      Voice.onSpeechStart = onSpeechStart;
-      Voice.onSpeechEnd = onSpeechEnd;
-      Voice.onSpeechResults = onSpeechResults;
-      Voice.onSpeechError = onSpeechError;
+      }, 10000);
     };
-
-    voiceListeners();
-    return () => {
+    
+    Voice.onSpeechEnd = () => {
+      console.log('Speech ended');
       if (speechTimeoutRef.current) {
         clearTimeout(speechTimeoutRef.current);
       }
-      Voice.destroy();
+      setIsListening(false);
     };
-  }, [isListening]);
+    
+    Voice.onSpeechResults = (e: SpeechResultsEvent) => {
+      console.log('Speech results:', e.value);
+      if (speechTimeoutRef.current) {
+        clearTimeout(speechTimeoutRef.current);
+      }
+      if (e.value && e.value.length > 0) {
+        setLocationText(e.value[0]);
+      }
+    };
+    
+    Voice.onSpeechError = (e: SpeechErrorEvent) => {
+      console.error('Speech error:', e);
+      if (e.error?.code === 'recognition_fail') {
+        Alert.alert('음성 인식 실패', '음성이 감지되지 않았습니다. 다시 시도해주세요.');
+      }
+      setIsListening(false);
+    };
+
+    // cleanup function
+    return () => {
+      Voice.destroy().then(Voice.removeAllListeners);
+      if (speechTimeoutRef.current) {
+        clearTimeout(speechTimeoutRef.current);
+      }
+    };
+  }, []); // 의존성 배열을 비워서 한 번만 실행되도록 함
 
   useEffect(() => {
     const initTTS = async () => {
@@ -128,36 +121,24 @@ const LocationSet = () => {
 
   const startListening = async () => {
     try {
+      // 기존 리스너 제거 및 재설정
       await Voice.destroy();
-      await Voice.removeAllListeners();
-      const available = await Voice.isAvailable();
-      if (!available) {
-        Alert.alert('오류', '음성 인식을 사용할 수 없습니다.');
-        return;
-      }
       await Voice.start('ko-KR');
-      console.log('Voice recognition started');
       setIsListening(true);
     } catch (e) {
       console.error('Start listening error:', e);
-      Alert.alert('오류', '음성 인식을 시작할 수 없습니다.');
       setIsListening(false);
     }
   };
 
   const stopListening = async () => {
-    if (!isListening) return;
-    
     try {
-      if (speechTimeoutRef.current) {
-        clearTimeout(speechTimeoutRef.current);
+      if (isListening) {
+        await Voice.stop();
+        setIsListening(false);
       }
-      await Voice.stop();
-      console.log('Voice recognition stopped');
-      setIsListening(false);
     } catch (e) {
-      console.error('Stop listening error:', e);
-      setIsListening(false);
+      console.error(e);
     }
   };
 
@@ -247,7 +228,7 @@ const LocationSet = () => {
           name: firstResult.name
         };
         
-        // 검색 결과를 음성으로 안내
+        // 검색 결과를 음성으로 내
         speak(`${searchedLocation.name}을 ${type === 'departure' ? '출발지' : '도착지'}로 설정하시겠습니까?`);
 
         if (type === 'departure') {
@@ -275,8 +256,9 @@ const LocationSet = () => {
       <View style={styles.inputContainer}>
         <TextInput
           ref={inputRef}
-          style={styles.input}
+          style={[styles.input, { color: Color.textPrimary }]}
           placeholder={`${type === 'departure' ? '출발지' : '도착지'}를 입력하세요`}
+          placeholderTextColor={Color.textSecondary}
           value={locationText}
           onChangeText={setLocationText}
           onSubmitEditing={handleSearch}
@@ -287,8 +269,13 @@ const LocationSet = () => {
             styles.voiceButton,
             isListening && styles.voiceButtonActive
           ]}
-          onPressIn={startListening}
-          onPressOut={stopListening}
+          onPress={() => {
+            if (isListening) {
+              stopListening();
+            } else {
+              startListening();
+            }
+          }}
           activeOpacity={0.7}
         >
           <Text style={styles.voiceButtonText}>
@@ -319,6 +306,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 15,
     backgroundColor: Color.backgroundsPrimary,
+    color: Color.textPrimary,
   },
   searchButton: {
     backgroundColor: Color.secondary,

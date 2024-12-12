@@ -49,9 +49,10 @@ export const Border = {
 export const CommonStyles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center' as FlexAlignType,
+        alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
+        backgroundColor: Color.backgroundsPrimary,
     },
     safeAreaView: {
         flex: 1,
