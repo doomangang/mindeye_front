@@ -251,6 +251,53 @@ const LocationSet = () => {
     }
   };
 
+  // 길게 누르기 시작할 때
+  const handlePressIn = async () => {
+    if (!showKeyboardInput) {  // 키보드 입력 모드가 아닐 때만
+      await startListening();
+    }
+  };
+
+  // 길게 누르기 끝날 때
+  const handlePressOut = async () => {
+    if (isListening) {
+        await stopListening();
+        
+        // 음성 입력이 있을 때만 자동 검색 시작
+        if (locationText.trim()) {
+            // 약간의 딜레이 후 검색 실행 (음성 인식 결과가 완전히 반영되도록)
+            setTimeout(() => {
+                handleSearch();
+            }, 500);
+        }
+    }
+  };
+
+  // 키보드 토글 버튼 처리
+  const toggleKeyboardInput = () => {
+    setShowKeyboardInput(!showKeyboardInput);
+    if (isListening) {
+      stopListening();
+    }
+    // 키보드/음성 모드 전환 시 안내
+    speak(showKeyboardInput ? 
+        '음성 입력 모드로 전환합니다.' : 
+        '키보드 입력 모드로 전환합니다.'
+    );
+  };
+
+  // 초기 음성 안내를 위한 useEffect 추가
+  useEffect(() => {
+    const timer = setTimeout(() => {
+        const message = type === 'departure' ? 
+            '출발지를 입력해주세요. 화면을 길게 누르면 음성으로 입력할 수 있습니다.' : 
+            '도착지를 입력해주세요. 화면을 길게 누르면 음성으로 입력할 수 있습니다.';
+        speak(message);
+    }, 500); // 화면 전환 후 0.5초 후에 안내
+
+    return () => clearTimeout(timer);
+  }, [type]);
+
   return (
     <View style={CommonStyles.container}>
       <View style={styles.inputContainer}>
